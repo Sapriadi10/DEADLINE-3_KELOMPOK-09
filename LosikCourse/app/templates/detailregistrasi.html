@@ -31,19 +31,10 @@
         </tr>
         {% endfor %}
     </table>
-    <h1>Get Detail Registrasi</h1>
-    <table>
-        <tr>
-            <th>Id Detail Registrasi</th>
-            <th>Id Registrasi</th>
-            <th>Id Kelas Mata Kursus</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>{{ getdetailregistrasiobj.Id_DetailRegistrasi }}</td>
-            <td>{{ getdetailregistrasiobj.Id_Registrasi }}</td>
-            <td>{{ getdetailregistrasiobj.Id_Kelas_Mata_Kursus }}</td>
-        </tr>
-    </table>
+    <a href="{% url 'createCustomerService' %}">
+        <button>
+            CREATE DATA
+        </button>
+    </a>
 </body>
 </html>

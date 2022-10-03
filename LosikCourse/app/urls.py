@@ -22,5 +22,5 @@ urlpatterns = [
     path('createdetailregistrasi', views.createdetailregistrasi, name='createdetailregistrasi'),
     path('deletedetailregistrasi/<str:id>', views.deletedetailregistrasi, name='deletedetailregistrasi'),
     path('updatedetailregistrasi/<str:id>', views.updatedetailregistrasi, name='updatedetailregistrasi'),
-    # path('deleteregistrasi/<str:id>', views.deleteregistrasi, name='deteleregistrasi'),
+    path('deleteregistrasi/<str:id>', views.deleteregistrasi, name='deleteregistrasi')
 ]

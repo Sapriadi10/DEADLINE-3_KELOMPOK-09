@@ -9,7 +9,7 @@
 <body>
     <h1>Update Data Kelas Mata Kursus</h1>
     <form action="" method="post">
-        {% csrf_token%}
+        {% csrf_token %}
         <table>
             <tr>
                 <th>Jenis Kursus</th>
@@ -26,7 +26,7 @@
                 <th>Jenis Kelas</th>
                 <td>
                     <select name="JenisKelas" id="">
-                        {%if kelasmatakursusobj.JenisKelas == "PROCLASS" %}
+                        {%if Kelas_Mata_Kursus.Jenis_Kelas == "PROCLASS" %}
                         <option selected value="PROCLASS">PROCLASS</option>
                         <option value="MINICLASS">MINICLASS</option>
                         {% else %}
@@ -39,26 +39,26 @@
             <tr>
                 <th>Jumlah Pertemuan</th>
                 <td>
-                    <input type="number" name="JumlahPertemuan" value="{{kelasmatakursusobj.JumlahPertemuan}}">
+                    <input type="number" name="JumlahPertemuan" value="{{Kelas_Mata_Kursus.Jumlah_Pertemuan}}">
                 </td>
             </tr>
             <tr>
                 <th>Jadwal</th>
                 <td>
-                    <input type="text" name="Jadwal" value="{{kelasmatakursusobj.Jadwal}}">
+                    <input type="text" name="Jadwal" value="{{Kelas_Mata_Kursus.Jadwal}}">
                 </td>
             </tr>
             <tr>
                 <th>Harga</th>
                 <td>
-                    <input type="number" name="Harga" value="{{kelasmatakursusobj.Harga}}">
+                    <input type="number" name="Harga" value="{{Kelas_Mata_Kursus.Harga}}">
                 </td>
             </tr>
             <tr>
                 <th>Status Kelas</th>
                 <td>
                     <select name="StatusKelas" id="">
-                        {%if kelasmatakursusobj.StatusKelas == "Belum Dimulai"%}
+                        {%if Kelas_Mata_Kursus.Status_Kelas == "Belum Dimulai"%}
                         <option selected value="Belum Dimulai">Belum Dimulai</option>
                         <option value="Dimulai">Dimulai</option>
                         {% else %}

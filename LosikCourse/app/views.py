@@ -2,6 +2,7 @@ from socket import IP_DROP_MEMBERSHIP
 from django.shortcuts import render,redirect
 from django.shortcuts import render,redirect
 from . import models
+from datetime import datetime
 
 # # Create your views here.
 def siswa(request):
@@ -32,9 +33,11 @@ def createsiswa(request):
 
 def updatesiswa(request,id):
     siswaobj = models.Siswa.objects.get(Id_Siswa=id)
+    tanggal = datetime.strftime(siswaobj.Tanggal_Lahir, '%Y-%m-%d')
     if request.method == "GET" :
         return render(request, 'updatesiswa.html', {
             'allsiswa' : siswaobj,
+            'tanggal':tanggal
         })
     else :
         siswaobj.Nama_Siswa = request.POST['Nama_Siswa']
@@ -95,7 +98,7 @@ def deleteCustomerService(request,id):
 
 def registrasi(request):
     allregistrasiobj = models.Registrasi.objects.all()
-    getregistrasiobj = models.Registrasi.objects.get(Id_Registrasi=1)
+    getregistrasiobj = models.Registrasi.objects.get(Id_Registrasi=2)
 
     return render(request, 'registrasi.html',{
         'allregistrasiobj' : allregistrasiobj,
@@ -103,7 +106,7 @@ def registrasi(request):
     })
 
 def createregistrasi(request):
-    if request.method == "POST":
+    if request.method == "GET":
         return render(request, 'createregistrasi.html')
     else:
         Id_Siswa = request.POST['Id_Siswa']
@@ -121,9 +124,11 @@ def createregistrasi(request):
 
 def updateregistrasi(request,id):
     registrasiobj = models.Registrasi.objects.get(Id_Registrasi= id)
+    tanggal = datetime.strftime(registrasiobj.Tanggal_Registrasi, '%Y-%m-%d')
     if request.method == "GET":
         return render(request,'updateregistrasi.html',{
-            'registrasi' : registrasiobj
+            'registrasi' : registrasiobj,
+            'tanggal':tanggal
         })
     else :
         registrasiobj.Id_Siswa = request.POST['Id_Siswa']
@@ -132,10 +137,10 @@ def updateregistrasi(request,id):
         registrasiobj.save()
         return redirect('registrasi')
 
-# def deleteregistrasi(request,id):
-#     registrasiobj = models.Registrasi.objects.get(Id_Registrasi=id)
-#     registrasiobj.delete()
-#     return redirect('registrasi')
+def deleteregistrasi(request,id):
+    registrasiobj = models.Registrasi.objects.get(Id_Registrasi=id)
+    registrasiobj.delete()
+    return redirect('registrasi')
 
 def kelasmatakursus(request):
     allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.all()
@@ -194,7 +199,7 @@ def deletekelasmatakursus(request,id):
 
 def DetailRegistrasi(request):
     alldetailregistrasiobj = models.DetailRegistrasi.objects.all()
-    getdetailregistrasiobj = models.DetailRegistrasi.objects.get(Id_DetailRegistrasi=3)
+    getdetailregistrasiobj = models.DetailRegistrasi.objects.get(Id_DetailRegistrasi=5)
 
     return render(request, 'detailregistrasi.html', {
         "alldetailregistrasiobj" : alldetailregistrasiobj,
@@ -231,4 +236,4 @@ def updatedetailregistrasi(request,id):
 def deletedetailregistrasi(request,id):
     detailregistrasiobj = models.DetailRegistrasi.objects.get(Id_DetailRegistrasi=id)
     detailregistrasiobj.delete()
-    return redirect('DetailRegistrasi')
+    return redirect('DetailRegistrasi') 

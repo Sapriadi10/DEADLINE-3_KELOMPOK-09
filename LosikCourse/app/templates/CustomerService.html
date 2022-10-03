@@ -33,21 +33,6 @@
         </tr>
         {% endfor %}
     </table>
-    <h1>Get Customer Service</h1>
-    <table>
-        <tr>
-            <th>ID Customer Service</th>
-            <th>Nama CS</th>
-            <th>Nomor Telepon CS</th>
-            <th>Alamat CS</th>
-        </tr>
-        <tr>
-            <td>{{ getcustomerservice.ID_CS }}</td>
-            <td>{{ getcustomerservice.nama_cs }}</td>
-            <td>{{ getcustomerservice.nomer_telepon_cs }}</td>
-            <td>{{ getcustomerservice.Alamat_cs }}</td>
-        </tr>
-    </table>
 
     <a href="{% url 'createCustomerService' %}">
         <button>

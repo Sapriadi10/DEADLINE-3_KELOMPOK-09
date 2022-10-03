@@ -24,22 +24,18 @@
                 <a href="{%url 'updateregistrasi' item.Id_Registrasi %}">
                     <button>Update</button>
                 </a>
+                <a href="{%url 'deleteregistrasi' item.Id_Registrasi %}">
+                    <button>Delete</button>
+                </a>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <h1>Get Registrasi</h1>
-    <table>
-        <tr>
-            <th>Id_Siswa</th>
-            <th>ID_CS</th>
-            <th>Tanggal_Registrasi</th>
-        </tr>
-        <tr>
-            <td>{{ getpelangganobj.Id_Siswa }}</td>
-            <td>{{ getpelangganobj.ID_CS }}</td>
-            <td>{{ getpelangganobj.Tanggal_Registrasi }}</td>
-        </tr>
     </table>
+    <a href="{% url 'createregistrasi' %}">
+        <button>
+            CREATE DATA
+        </button>
+</a>
 </body>
 </html>
