@@ -14,13 +14,21 @@
             <tr>
                 <th>Id_Siswa</th>
                 <td>
-                    <input type="text" name="Id_Siswa">
+                    <select name="Id_Siswa" id="">
+                        {% for item in datasiswa %}
+                        <option value="{{item.Id_Siswa}}">{{item}}</option>
+                        {% endfor %}
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th>ID_CS</th>
                 <td>
-                    <input type="text" name="ID_CS">
+                    <select name="ID_CS" id="">
+                        {% for item in datacustomerservice %}
+                        <option value="{{item.ID_CS}}">{{item}}</option>
+                        {% endfor %}
+                    </select>
                 </td>
             </tr>
             <tr>
