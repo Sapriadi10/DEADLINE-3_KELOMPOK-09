@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Data Kelas Mata Kursus</h1>
+    <h1>GraphicandMotionDesign</h1>
     <table>
         <tr>
             <th>ID Kelas Mata Kursus </th>
@@ -19,7 +19,7 @@
             <th>Status Kelas</th>
             <th>Action</th>
         </tr>
-        {% for item in allkelasmatakursus %}
+        {% for item in filtergm %}
         <tr>
             <td>{{ item.Id_Kelas_Mata_Kursus}}</td>
             <td>{{ item.Jenis_Kursus}}</td>
@@ -28,22 +28,8 @@
             <td>{{ item.Jadwal }}</td> 
             <td>{{ item.Harga }}</td>
             <td>{{ item.Status_Kelas }}</td>
-            <td>
-                <a href="{%url 'updatekelasmatakursus' item.Id_Kelas_Mata_Kursus %}">
-                    <button>Update</button>
-                </a>
-                <a href="{%url 'deletekelasmatakursus' item.Id_Kelas_Mata_Kursus %}">
-                    <button>Delete</button>
-                </a>
-            </td>
         </tr>
         {% endfor %}
     </table>
-    </table>
-    <a href="{% url 'createkelasmatakursus' %}">
-        <button>
-            CREATE DATA
-        </button>
-    </a>
 </body>
 </html>

@@ -3,14 +3,13 @@ from django.shortcuts import render,redirect
 from django.shortcuts import render,redirect
 from . import models
 from datetime import datetime
+from django.http import HttpResponse
 
 # # Create your views here.
 def siswa(request):
     allsiswaobj = models.Siswa.objects.all()
-    getsiswaobj = models.Siswa.objects.get(Id_Siswa=1)
     return render(request, 'siswa.html', {
         'allsiswaobj' : allsiswaobj,
-        'getsiswaobj' : getsiswaobj,
     })
 
 def createsiswa(request):
@@ -54,11 +53,9 @@ def deletesiswa(request,id):
 
 def CustomerService(request):
     allCustomerServiceobj = models.CustomerService.objects.all()
-    getCustomerServiceobj = models.CustomerService.objects.get(ID_CS=1)
 
     return render(request, 'CustomerService.html', {
         "allCustomerService" : allCustomerServiceobj,
-        "getCustomerService" : getCustomerServiceobj,
     })
 
 def createCustomerService(request):
@@ -107,8 +104,8 @@ def registrasi(request):
 
 def createregistrasi(request):
     if request.method == "GET":
-        allsiswaobj = models.Siswa.objects.all
-        allCustomerServiceobj = models.CustomerService.objects.all
+        allsiswaobj = models.Siswa.objects.all()
+        allCustomerServiceobj = models.CustomerService.objects.all()
         return render(request, 'createregistrasi.html',{
             'datasiswa' : allsiswaobj, 'datacustomerservice': allCustomerServiceobj
         })
@@ -152,13 +149,9 @@ def deleteregistrasi(request,id):
 
 def kelasmatakursus(request):
     allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.all()
-    getkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.get(Id_Kelas_Mata_Kursus=3)
-    filterkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.filter(Jenis_Kursus="Full-stack Web Developer")
 
     return render(request, 'kelasmatakursus.html', {
         "allkelasmatakursus" : allkelasmatakursusobj,
-        "getkelasmatakursus" : getkelasmatakursusobj,
-        "filterkelasmatakursus" : filterkelasmatakursusobj
     })
 
 def createkelasmatakursus(request):
@@ -216,8 +209,8 @@ def DetailRegistrasi(request):
 
 def createdetailregistrasi(request):
     if request.method == "GET":
-        allregistrasiobj = models.Registrasi.objects.all
-        allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.all
+        allregistrasiobj = models.Registrasi.objects.all()
+        allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.all()
         return render(request, 'createdetailregistrasi.html',{
             'dataregistrasi' : allregistrasiobj, 'datakelasmata' : allkelasmatakursusobj
         })
@@ -225,11 +218,11 @@ def createdetailregistrasi(request):
         Id_Registrasi = request.POST['Id_Registrasi']
         allregistrasiobj = models.Registrasi.objects.get(Id_Registrasi=Id_Registrasi)
         Id_Kelas_Mata_Kursus = request.POST['Id_Kelas_Mata_Kursus']
-        allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.get(Id_Kelas_Mata_Kursus)
+        allkelasmatakursusobj = models.Kelas_Mata_Kursus.objects.get(Id_Kelas_Mata_Kursus=Id_Kelas_Mata_Kursus)
 
         newdetailregistrasi = models.DetailRegistrasi(
-            Id_Registrasi = Id_Registrasi,
-            Id_Kelas_Mata_Kursus = Id_Kelas_Mata_Kursus
+            Id_Registrasi = allregistrasiobj,
+            Id_Kelas_Mata_Kursus = allkelasmatakursusobj
         )
         newdetailregistrasi.save()
 
@@ -251,3 +244,38 @@ def deletedetailregistrasi(request,id):
     detailregistrasiobj = models.DetailRegistrasi.objects.get(Id_DetailRegistrasi=id)
     detailregistrasiobj.delete()
     return redirect('DetailRegistrasi') 
+
+def dashboard(request):
+    kelasdimulai= models.Kelas_Mata_Kursus.objects.filter(Status_Kelas = "Dimulai")
+    return render(request, 'home.html',{
+
+    })
+def FullstackWebDeveloper(request):
+    allFullstackWebDeveloperobj = models.Kelas_Mata_Kursus.objects.all()
+    filterfs = models.Kelas_Mata_Kursus.objects.filter(Jenis_Kursus="Full-stack Web Developer")
+    return render(request, 'FullstackWebDeveloper.html', {
+        "allFullstackWebDeveloperobj" : allFullstackWebDeveloperobj, 'filterfs': filterfs,
+    }) 
+
+def UIUXDesignandProducManagement(request):
+    allUIUXDesignandProducManagement=models.Kelas_Mata_Kursus.objects.all()
+    filterui = models.Kelas_Mata_Kursus.objects.filter(Jenis_Kursus="UI/UX Design and Produc Management")
+
+    return render(request, 'UIUXDesignandProducManagement.html', {
+        "allUIUXDesignandProducManagementobj" : allUIUXDesignandProducManagement, 'filterui' : filterui,
+    })
+
+def GraphicandMotionDesign(request):
+    allGraphicandMotionDesign=models.Kelas_Mata_Kursus.objects.all()
+    filtergm = models.Kelas_Mata_Kursus.objects.filter(Jenis_Kursus="Graphic and Motion Designer")
+
+    return render(request, 'GraphicandMotionDesign.html', {
+        "allGraphicandMotionDesignobj" : allGraphicandMotionDesign, 'filtergm': filtergm, 
+    })
+
+def DigitalMarketing(request):
+    allDigitalMarketing=models.Kelas_Mata_Kursus.objects.all()
+    filterdm = models.Kelas_Mata_Kursus.objects.filter(Jenis_Kursus="Digital Marketing")
+    return render(request, 'DigitalMarketing.html', {
+        "allDigitalMarketingobj" : allDigitalMarketing, 'filterdm': filterdm,
+    }) 

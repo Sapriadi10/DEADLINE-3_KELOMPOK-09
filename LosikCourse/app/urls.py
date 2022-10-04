@@ -22,5 +22,9 @@ urlpatterns = [
     path('createdetailregistrasi', views.createdetailregistrasi, name='createdetailregistrasi'),
     path('deletedetailregistrasi/<str:id>', views.deletedetailregistrasi, name='deletedetailregistrasi'),
     path('updatedetailregistrasi/<str:id>', views.updatedetailregistrasi, name='updatedetailregistrasi'),
-    path('deleteregistrasi/<str:id>', views.deleteregistrasi, name='deleteregistrasi')
-]
+    path('deleteregistrasi/<str:id>', views.deleteregistrasi, name='deleteregistrasi'),
+    path('Full-stack Web Developer', views.FullstackWebDeveloper, name='FullstackWebDeveloper'),
+    path('UIUXDesignandProducManagement', views.UIUXDesignandProducManagement, name='UIUXDesignandProducManagement'),
+    path('GraphicandMotionDesign', views.GraphicandMotionDesign, name='GraphicandMotionDesign'),
+    path('DigitalMarketing', views.DigitalMarketing, name='DigitalMarketing')
+    ]
